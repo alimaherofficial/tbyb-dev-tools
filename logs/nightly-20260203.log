@@ -1,0 +1,5 @@
+==========================================
+🌙 Nightly Build Session - Tue Feb  3 11:00:01 PM EET 2026
+==========================================
+📋 Checking Linear issues...
+/home/bilo/code/tbyb-dev-tools/nightly-build.sh: line 64: unexpected EOF while looking for matching `"'

@@ -1,181 +1,177 @@
-# TBYB Development Tools
+# TBYB Dev Tools
 
-Lightweight monitoring and utility tools for the Try Before You Bike platform.
+A collection of development tools for Try Before You Bike (TBYB) - built to streamline content creation and project management workflows.
 
-Built for: **Ali Maher** (@alimaherofficial)  
-Created by: **bilo** 🤖 (your AI assistant)
+## 🚀 Tools Overview
 
----
+### 1. Content Pipeline Generator (`content_pipeline.py`)
 
-## 🚀 Quick Start
+Automatically generates video script outlines from content ideas stored in Notion.
 
-```bash
-# Clone the tools
-git clone https://github.com/alimaherofficial/tbyb-dev-tools.git
-cd tbyb-dev-tools
-
-# No installation needed - pure Python standard library!
-python3 cron_monitor.py
-```
-
----
-
-## 📦 Tools Included
-
-### 1. 🔍 Cron Monitor (`cron_monitor.py`)
-
-Monitor your NestJS cron jobs without modifying your main application.
-
-**Features:**
-- ✅ Track job execution history
-- ✅ Monitor success/failure rates  
-- ✅ Measure execution duration
-- ✅ JSON report generation
-- ✅ Watch mode for real-time monitoring
+**What it does:**
+- Fetches content ideas from your Notion database
+- Generates structured script templates with:
+  - Attention-grabbing hooks
+  - Professional intros
+  - Timed talking points
+  - Call-to-action suggestions
+  - Production notes
+- Categorizes content (educational, promotional, testimonial, how-to)
+- Estimates video duration
+- Saves scripts to dated folders for easy organization
 
 **Usage:**
 ```bash
-# Show current status
-python3 cron_monitor.py
+# Set your Notion API key
+export NOTION_KEY="your_notion_api_key"
 
-# Watch mode (refreshes every 5s)
-python3 cron_monitor.py --watch
+# Run the pipeline
+python content_pipeline.py
 
-# Generate JSON report for dashboards
-python3 cron_monitor.py --report
+# Limit to 5 ideas
+python content_pipeline.py --limit 5
 ```
 
-**Sample Output:**
-```
-================================================================================
-                          TBYB Cron Jobs Status                               
-================================================================================
-Job Name                       Last Run             Status     24h Runs   Avg (ms)
---------------------------------------------------------------------------------
-daily-cleanup                  2026-01-29 22:00:00  ✓ OK       1          452    
-subscription-reminders         2026-01-29 09:00:00  ✓ OK       3          123    
-report-generation              Never                -          0          -      
-================================================================================
-```
-
-**Integration with NestJS:**
-
-Wrap your cron jobs like this:
-
-```typescript
-// Import the monitor wrapper
-import { monitoredCron } from './utils/cron-monitor';
-
-@Cron('0 0 * * *')
-async handleDailyCleanup() {
-  await monitoredCron('daily-cleanup', async () => {
-    // Your actual cron logic
-    await this.cleanupService.runDailyCleanup();
-  })();
-}
-```
+**Output:** Scripts saved to `~/clawd/content_scripts/YYYY-MM-DD/`
 
 ---
 
-### 2. 📧 Email Health Checker (`email_health.py`)
+### 2. Task Syncer (`task_syncer.py`)
 
-Monitor email delivery health and catch issues before they affect customers.
+Synchronizes tasks between Notion and Linear, identifying discrepancies and generating sync reports.
 
-**Tracks:**
-- 📊 Delivery rates (should be >95%)
-- 📊 Bounce rates (should be <5%)
-- 📊 Failure rates (should be <5%)
-- 📊 Pending queue size
-- 📊 Per-template performance
+**What it does:**
+- Fetches all tasks from Notion database
+- Fetches all issues from Linear (TBYB project)
+- Cross-references and identifies:
+  - Tasks in Notion but missing in Linear
+  - Issues in Linear not tracked in Notion
+  - Items with mismatched priorities
+- Generates detailed sync reports with recommendations
 
 **Usage:**
 ```bash
-# Quick health check
-python3 email_health.py
+# Set your API keys
+export NOTION_KEY="your_notion_api_key"
+export LINEAR_KEY="your_linear_api_key"
 
-# Detailed report with template breakdown
-python3 email_health.py --detailed
+# Run the sync
+python task_syncer.py
 
-# Watch mode for monitoring
-python3 email_health.py --watch
-
-# JSON output for dashboards
-python3 email_health.py --json
+# Custom output directory
+python task_syncer.py --output /path/to/reports
 ```
 
-**Health Status Levels:**
-- ✅ **HEALTHY** - All metrics within normal ranges
-- ⚠️ **WARNING** - Some metrics need attention
-- ❌ **CRITICAL** - Immediate action required
-- ❓ **UNKNOWN** - No data available yet
+**Output:** 
+- Text reports: `~/clawd/sync_reports/sync_report_YYYYMMDD_HHMMSS.txt`
+- JSON exports: `~/clawd/sync_reports/sync_data_YYYYMMDD_HHMMSS.json`
 
 ---
 
-## 🎯 Addresses Your Linear Issues
+## 📋 Prerequisites
 
-| Tool | Linear Issue | Status |
-|------|--------------|--------|
-| `cron_monitor.py` | [TRY-168](https://linear.app/try-before-you-bike/issue/TRY-168) - Cron Jobs Dashboard | ✅ Provides monitoring foundation |
-| `email_health.py` | [TRY-149](https://linear.app/try-before-you-bike/issue/TRY-149) - Emails system review | ✅ Health monitoring ready |
+- Python 3.8+
+- Notion API key (from https://www.notion.so/my-integrations)
+- Linear API key (from https://linear.app/settings/api)
 
----
+## 🛠️ Installation
 
-## 🔧 Setup
-
-### Option 1: Standalone (Recommended)
-Just copy the scripts you need into your project:
 ```bash
-cp cron_monitor.py /path/to/tbyb-server/utils/
-cp email_health.py /path/to/tbyb-server/utils/
+# Clone/navigate to the dev-tools directory
+cd /home/bilo/code/tbyb-dev-tools
+
+# Install dependencies
+pip install -r requirements.txt
+
+# Or use a virtual environment
+python -m venv venv
+source venv/bin/activate  # On Windows: venv\Scripts\activate
+pip install -r requirements.txt
 ```
 
-### Option 2: Git Submodule
+## 🔧 Configuration
+
+### Notion Setup
+1. Create an integration at https://www.notion.so/my-integrations
+2. Share your Tasks database with the integration
+3. Copy the API key and set as `NOTION_KEY` environment variable
+
+### Linear Setup
+1. Get your API key from https://linear.app/settings/api
+2. Set as `LINEAR_KEY` environment variable
+3. The tool connects to the "TBYB" team by default
+
+### Environment Variables
 ```bash
-cd /path/to/tbyb-server
-git submodule add https://github.com/alimaherofficial/tbyb-dev-tools.git tools
+# Add to your ~/.bashrc or ~/.zshrc
+export NOTION_KEY="ntn_your_key_here"
+export LINEAR_KEY="lin_api_your_key_here"
 ```
 
-### Option 3: Nightly Automation
-Add to your crontab for nightly checks:
+## 📁 Output Structure
+
+```
+~/clawd/
+├── content_scripts/
+│   └── 2026-01-31/
+│       ├── 01_Why_Electric_Bikes_Are_Perfect.txt
+│       ├── 02_How_to_Choose_Your_First_Bike.txt
+│       └── _summary.json
+└── sync_reports/
+    ├── sync_report_20260131_234500.txt
+    └── sync_data_20260131_234500.json
+```
+
+## 🎯 Script Templates
+
+The content pipeline generates scripts with:
+
+- **Hook**: First 5 seconds to grab attention
+- **Intro**: Welcome and topic introduction
+- **Talking Points**: Timestamped sections with key messages
+- **Call-to-Action**: End with clear next steps
+- **Production Notes**: Tone, B-roll suggestions, music, captions
+
+## 📊 Sync Report Features
+
+The task syncer generates reports showing:
+
+- Summary statistics
+- Missing items in each system
+- Priority mismatches with recommendations
+- Action items to resolve sync issues
+- Full JSON export for programmatic processing
+
+## 🔄 Automation Ideas
+
+Add to your crontab for nightly runs:
+
 ```bash
-# Edit crontab
-crontab -e
+# Run content pipeline every Sunday at 9 AM
+0 9 * * 0 cd /home/bilo/code/tbyb-dev-tools && python content_pipeline.py
 
-# Add this line for 11 PM Cairo time:
-0 23 * * * /path/to/tbyb-dev-tools/nightly-build.sh
+# Run task syncer every day at 8 AM
+0 8 * * * cd /home/bilo/code/tbyb-dev-tools && python task_syncer.py
 ```
 
----
+## 🐛 Troubleshooting
 
-## 💾 Data Storage
+**"No tasks found"**
+- Check that your Notion database is shared with the integration
+- Verify the database ID in the script matches your setup
 
-All tools use **SQLite** databases stored in `.data/` directory:
-- `cron-monitor.db` - Cron job execution history
-- `email-health.db` - Email delivery metrics
+**"Team not found" in Linear**
+- Ensure your API key has access to the TBYB team
+- Check the team key in the script (default: "TBYB")
 
-This keeps everything lightweight with no external dependencies.
+**Permission errors**
+- Verify environment variables are set correctly
+- Check file permissions in output directories
 
----
+## 📝 License
 
-## 🛣️ Roadmap
-
-Coming soon:
-- [ ] **Database Health Checker** - PostgreSQL connection monitoring
-- [ ] **API Latency Tracker** - Endpoint response time monitoring
-- [ ] **Business Report CLI** - Daily/weekly business metrics
-- [ ] **Slack Integration** - Alert notifications
+Internal TBYB tooling - For use by authorized team members only.
 
 ---
 
-## 🤝 Contributing
-
-These tools are built specifically for TBYB but feel free to adapt them!
-
-To suggest features or report issues:
-1. Create an issue in Linear
-2. Tag it with `dev-tools`
-3. I'll pick it up in the next nightly session
-
----
-
-Built with 🐾 by **bilo** for Ali Maher
+Built with 💚 by the TBYB Dev Team

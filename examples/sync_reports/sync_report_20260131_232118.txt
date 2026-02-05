@@ -1,0 +1,78 @@
+================================================================================
+TBYB TASK SYNC REPORT
+================================================================================
+Generated: 2026-01-31 23:21:18
+
+📊 SUMMARY
+--------------------------------------------------------------------------------
+Notion Tasks:    39
+Linear Issues:   0
+Sync Issues:     39
+
+⚠️  TASKS IN NOTION BUT MISSING IN LINEAR
+--------------------------------------------------------------------------------
+• Quran
+  Status: Not done
+  URL: https://www.notion.so/Quran-08261f1b13b648199d25f1791fb79cbf
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• make the edits on the GDBR
+  Status: Done
+  URL: https://www.notion.so/make-the-edits-on-the-GDBR-225fd206a13780649b8df4ef1be1b821
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+•  finishing the email automation 
+  Status: Done
+  URL: https://www.notion.so/finishing-the-email-automation-225fd206a137808c89b4c157a6d09541
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• Fix OurBike customer issue
+  Status: Not done
+  URL: https://www.notion.so/Fix-OurBike-customer-issue-225fd206a137809e8bc6cbba03033d9e
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• response to Tony email 
+  Status: Done
+  URL: https://www.notion.so/response-to-Tony-email-225fd206a13780eda068ee549f4faaed
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• User makes booking for more than 24 hours
+  Status: Done
+  URL: https://www.notion.so/User-makes-booking-for-more-than-24-hours-233fd206a137800993d3e0fac6b124df
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• Turn off the phone login for info email
+  Status: Not done
+  URL: https://www.notion.so/Turn-off-the-phone-login-for-info-email-233fd206a13780a9898ec8f220122884
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• Look at Emma website “Steep”
+  Status: Done
+  URL: https://www.notion.so/Look-at-Emma-website-Steep-234fd206a137800fabc6d86f0509d886
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• Read Tony Email
+  Status: Not done
+  URL: https://www.notion.so/Read-Tony-Email-237fd206a137800e84e7fff896716a48
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+• Make automation to make posts on linked, Medium, etc, and review them before posting them 
+  Status: Not done
+  URL: https://www.notion.so/Make-automation-to-make-posts-on-linked-Medium-etc-and-review-them-before-posting-them-237fd206a1378031b7dbd738a71cdcbd
+  → Create issue in Linear or add [TBYB-XXX] reference to Notion task
+
+... and 29 more
+
+📈 STATISTICS
+--------------------------------------------------------------------------------
+Missing in Linear:     39
+Missing in Notion:     0
+Priority Mismatches:   0
+
+✅ RECOMMENDED ACTIONS
+--------------------------------------------------------------------------------
+1. Create 39 issues in Linear from Notion tasks
+
+================================================================================
+END OF REPORT
+================================================================================
